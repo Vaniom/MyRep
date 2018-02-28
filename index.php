@@ -241,17 +241,21 @@ else{};// si pas de cookie => on ne fait rien !
 			var contenu = document.createElement('li');
 			var edition = document.createElement('p');
 			var date = document.createElement('p');
+			var cache = document.createElement('span');
 
 			// attribution des ID
 			liste.setAttribute('id', "list" + obj.id);
 			liste.setAttribute('class', 'blocListe');
 			balise.setAttribute('id', "balise" + obj.id);
 			titre.setAttribute('id', "titre"+ obj.id);
+			cache.setAttribute('id', 'cache');
+			cache.setAttribute('hidden', 'true');
 			balise.style.listStyleType = 'none';
 			// Définition des contenus textuels
 			titre.textContent = obj.titre;
 			contenu.innerHTML = "<input type='checkbox' /> " + obj.contenu;
-			edition.innerHTML = '<span id="modific" class="edition"><a href=#>Ajouter une entrée</a></span><span id="remov"class="edition"><a href=#>Supprimer la liste</a></span>';
+			edition.innerHTML = '<span id="modific" class="edition"><a href=# class="' + obj.id + '">Ajouter une entrée</a></span><span id="remov"class="edition"><a href=# class="' + obj.id + '">Supprimer la liste</a></span>';
+			cache.textContent = obj.id;
 			date.textContent = obj.date;
 			//Insertion de la première liste dans la page
 			document.getElementById('testContent').appendChild(liste);
@@ -268,6 +272,7 @@ else{};// si pas de cookie => on ne fait rien !
 				liste.appendChild(balise);
 				liste.appendChild(edition);
 				liste.appendChild(date);
+				liste.appendChild(cache);
 				liste.appendChild(document.createElement('hr'));
 				document.getElementById('testContent').appendChild(liste);
 				liste.setAttribute('id', "list" + obj.id);

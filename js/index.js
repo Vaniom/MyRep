@@ -105,4 +105,10 @@ $(function(){
 	});
 	// Activation des infobulles personalisées avec tooltipster
 	$('.infobulle').tooltipster();
+	//Lien de suppression de liste------------
+	$('.edition a').click(function(){
+		console.log(this.className);
+		var listId = this.className;
+		Cookies.set("listId", listId);
+	});
 });
