@@ -117,7 +117,7 @@ html {
 #testContent{
 	height: 100%;
 	width: Calc(100% - 60px);
-	overflow:hidden;
+	overflow: auto;
 }
 .iconeDiv{
 	position: absolute;
@@ -150,4 +150,22 @@ html {
 	margin-top: 30px;
 	margin-bottom: 0px;
 	margin-left: 0px;
+}
+input[type="checkbox"] {
+	width: 18px;
+	height: 18px;
+}
+.blocListe {
+	padding-left: 7%;
+}
+.blocListe p{
+	text-align: left;
+	font-style: italic;
+	padding-left: 5%;
+}
+#modific{
+	margin-right: 15%;
+}
+.edition {
+	margin-top: 50px;
 }

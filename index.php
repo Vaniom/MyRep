@@ -234,19 +234,24 @@ else{};// si pas de cookie => on ne fait rien !
 				contenu: tabl3[i].contenu,
 				date: tabl3[i].date_creation
 			};
-		 	//Mise en forme
+		 	//Creation des éléments
 			var liste = document.createElement('div');
 			var titre = document.createElement('h1');
 			var balise = document.createElement('ul');
 			var contenu = document.createElement('li');
+			var edition = document.createElement('p');
 			var date = document.createElement('p');
+
 			// attribution des ID
 			liste.setAttribute('id', "list" + obj.id);
+			liste.setAttribute('class', 'blocListe');
 			balise.setAttribute('id', "balise" + obj.id);
 			titre.setAttribute('id', "titre"+ obj.id);
+			balise.style.listStyleType = 'none';
 			// Définition des contenus textuels
 			titre.textContent = obj.titre;
-			contenu.textContent = obj.contenu;
+			contenu.innerHTML = "<input type='checkbox' /> " + obj.contenu;
+			edition.innerHTML = '<span id="modific" class="edition"><a href=#>Ajouter une entrée</a></span><span id="remov"class="edition"><a href=#>Supprimer la liste</a></span>';
 			date.textContent = obj.date;
 			//Insertion de la première liste dans la page
 			document.getElementById('testContent').appendChild(liste);
@@ -261,6 +266,7 @@ else{};// si pas de cookie => on ne fait rien !
 				liste.appendChild(titre);
 				balise.appendChild(contenu)
 				liste.appendChild(balise);
+				liste.appendChild(edition);
 				liste.appendChild(date);
 				liste.appendChild(document.createElement('hr'));
 				document.getElementById('testContent').appendChild(liste);
@@ -273,7 +279,7 @@ else{};// si pas de cookie => on ne fait rien !
 				// Alors, on insere juste le nouveau contenu dans la balise deja existante.
 				document.getElementById("bal"+ obj.id).appendChild(contenu);
 			}
-			
+
 		 }
 
 	</script>

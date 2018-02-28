@@ -37,5 +37,7 @@ for($i = 1; $i < count($a); $i++){ // On boucle sur chaque valeur du tableau; on
 		));
 	}
 }
+
 $req2->closeCursor();
 
+header("Location:index.php");
