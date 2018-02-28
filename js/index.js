@@ -5,7 +5,7 @@ $(function(){
 	$('#inscription').html('');
 	// get cookie
 
-	console.log(Cookies.get('pseudo',{ path:'/Site%20repertoire'}));
+
 	//On recupère le texte contenu dans la balise <span id="cookContent">
 	var x = $('#cookContent').text();
 

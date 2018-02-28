@@ -74,16 +74,7 @@ session_start(); // On démarre la session AVANT toute chose
 		<img id="iconeDivCoul" class="iconeDiv infobulle" src="img/divcoul.png" title="Afficher / Masquer mes listes">
 		<div id="testContent">
 			<a href = "todo.php"><img src = "img/todo.png" /></a>
-			<!--<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.
-				Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna.
-				Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.
-			</p>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.
-				Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna.
-				Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.
-			</p>-->
+
 
 		</div>
 	</div>
@@ -181,7 +172,7 @@ $req->closeCursor();
 				// ------------Mise en forme des tags----------------
 
 				var tabl=<?php echo json_encode($res); ?> ;
-				console.log('var tabl = ' + tabl.length);
+				//console.log('var tabl = ' + tabl.length);
 				var newArray = [];
 
 				if(tabl.length > 0) {
@@ -212,7 +203,10 @@ $req->closeCursor();
 }
 else{};// si pas de cookie => on ne fait rien !
 
-		//------------------------traitement des listes todolist--------------------------------------------------
+		//------------------------traitement des listes todolist----------------------------------------
+
+		//On recupere les listes de la bdd
+
 		$req3=$bdd->query('SELECT t.id_liste AS idliste,
 										l.titre_todoliste as titreliste,
 										t.contenu AS contenu,
@@ -220,59 +214,69 @@ else{};// si pas de cookie => on ne fait rien !
 										FROM todolist AS t,
 										liaison_user_todo AS l									
 										WHERE l.id_pseudo = "'.$_COOKIE['iduser'].'"
-										AND t.id_liste = l.id																								
+										AND t.id_liste = l.id												
 										');
 		$res3 = array();
 		while ($donnees3 = $req3->fetch()){
 			$res3[] = $donnees3;
 		}
-		var_dump($res3);
+		//var_dump($res3);
 ?>
 	<script>
 		var tabl3 = <?php echo json_encode($res3);?>;
 
-		console.log(tabl3);
+		//console.log(tabl3);
 
-		for (var i = 0; i < tabl3.length; i++) {
-		 	var obj = {
+		for (var i = 0; i < tabl3.length; i++) { // On boucle sur le tableau qui contient les entrées de liste
+		 	var obj = {// Pour chaque entrée on initialise un objet
 		 		id: tabl3[i].idliste,
 				titre: tabl3[i].titreliste,
-				contenu: tabl3[i].contenuliste,
+				contenu: tabl3[i].contenu,
 				date: tabl3[i].date_creation
 			};
-		 	//alert(obj.titre);
+		 	//Mise en forme
 			var liste = document.createElement('div');
 			var titre = document.createElement('h1');
 			var balise = document.createElement('ul');
 			var contenu = document.createElement('li');
 			var date = document.createElement('p');
-			var cond = titre.textContent;
-			console.log(cond);
+			// attribution des ID
+			liste.setAttribute('id', "list" + obj.id);
+			balise.setAttribute('id', "balise" + obj.id);
+			titre.setAttribute('id', "titre"+ obj.id);
+			// Définition des contenus textuels
+			titre.textContent = obj.titre;
+			contenu.textContent = obj.contenu;
+			date.textContent = obj.date;
+			//Insertion de la première liste dans la page
+			document.getElementById('testContent').appendChild(liste);
 
-			//if (document.getElementById(obj.id) == null) {
+			var cond = document.getElementById("tit"+obj.id);
 
-			 titre.textContent = obj.titre;
-			 contenu.textContent = obj.contenu;
-			 date.textContent = obj.date;
-			 liste.setAttribute('id', "b"+ obj.id);
-			 liste.appendChild(titre);
-			 balise.appendChild(contenu)
-			 liste.appendChild(balise);
-			 liste.appendChild(date);
-			 liste.appendChild(document.createElement('hr'));
-			 document.getElementById('testContent').appendChild(liste);
-			 //} else {
-				contenu = document.createElement('li');
-				contenu.textContent = obj.contenu;
-				balise.appendChild(contenu);
-			//}
-			var cond = document.getElementById("b" + obj.id);
-			console.log(cond.html);
+
+			if (cond === null) {// Si aucun titre ayant pour id le meme tit+obj.id que celui en cours de traitement
+				// n'esiste,
+				console.log("cond n'existe pas");
+			 	// alors on insere tout dans la page
+				liste.appendChild(titre);
+				balise.appendChild(contenu)
+				liste.appendChild(balise);
+				liste.appendChild(date);
+				liste.appendChild(document.createElement('hr'));
+				document.getElementById('testContent').appendChild(liste);
+				liste.setAttribute('id', "list" + obj.id);
+				balise.setAttribute('id', "bal" + obj.id);
+				titre.setAttribute('id', "tit"+ obj.id);
+			 } else {// Sinon (si un titre ayant pour id le meme tit+ obj.id que celui en cours de traitement existe)
+				console.log( "cond existe");
+				console.log("obj.id = " + obj.id);
+				// Alors, on insere juste le nouveau contenu dans la balise deja existante.
+				document.getElementById("bal"+ obj.id).appendChild(contenu);
+			}
+			
 		 }
 
 	</script>
-
-
 
 		<script src="js/jquery.js"></script>	
 		<script src="js/popper.min.js"></script>
