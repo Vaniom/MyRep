@@ -75,13 +75,7 @@ session_start(); // On démarre la session AVANT toute chose
 		<img id="iconeDivCoul" class="iconeDiv infobulle" src="img/divcoul.png" title="Afficher / Masquer mes listes">
 		<div id="testContent">
 			<a href = "todo.php"><img src = "img/todo.png" /></a>
-			<div id="popup">
-				<!--<form method="GET" action="modifliste.php">
-					<label for="item">Sasissez le texte :</label><br />
-					<input type="text" id="item" name="item" /><br />
-					<input type="submit" value="Ajouter" id="valid" /><input type="reset" value="Annuler" id="cancel" />
-				</form>-->
-			</div>
+			
 
 		</div>
 
@@ -293,7 +287,7 @@ else{};// si pas de cookie => on ne fait rien !
 				document.getElementById("bal"+ obj.id).appendChild(contenu);
 			}
 		 }
-		function confirmSubmit()
+		function confirmSubmit()//Ne pas supprimer, fonction appelée dans index.js
 		{
 			var ok=confirm("Etes-vous sûr ?");
 			if (ok){
