@@ -156,8 +156,8 @@ session_start();
 	
 $req->closeCursor();
 
-
-	foreach($result as $valeur) {
+if(!empty($result)) {
+	foreach ($result as $valeur) {
 
 		$req2 = $bdd->query('SELECT t.nom AS nom,
 					l.id_repcont AS id_repcont
@@ -169,33 +169,32 @@ $req->closeCursor();
 		while ($donnees2 = $req2->fetch()) {
 			$result2[] = $donnees2;
 		}
-		//var_dump($result2);
-		//echo json_encode($result2);
-		//echo "valeur['idcont'] =" .json_encode($valeur['idcont']);
-?>
-<script>
-		var temp2 = <?php echo json_encode($result2);?>;
-		console.log("temp2 = " + temp2);
-		for (var i = 0; i < temp2.length; i++) {
-			var obj2 =
-				{// Creation d'un nouvel objet
-					nom: temp2[i].nom,
-					idrepcont : temp2[i].id_repcont
-				};
-			arraytag.push(obj2);
-		}
-</script>
-<?php
+
+		?>
+		<script>
+			var temp2 = <?php echo json_encode($result2);?>;
+			//console.log("temp2 = " + temp2);
+			for (var i = 0; i < temp2.length; i++) {
+				var obj2 =
+					{// Creation d'un nouvel objet
+						nom: temp2[i].nom,
+						idrepcont: temp2[i].id_repcont
+					};
+				arraytag.push(obj2);
+			}
+		</script>
+		<?php
 	}
 	$req2->closeCursor();
+} else {};
+
 
 ?>
 <script>
 
 
 	var temp = <?php echo json_encode($result); ?>;
-	//console.log(temp[0].contenu);
-	//console.log(arraytag);
+
 
 		for (var i = 0; i < temp.length; i++){
 			var obj =
@@ -256,7 +255,7 @@ $req->closeCursor();
 			document.getElementById("content").appendChild(newLigne);
 
 
-			//Gestion du click sur le bouton "supprimer"
+			//Gestion du clic sur le bouton "supprimer"
 			suppr.addEventListener('click', function(){
 				var idSuppr = this.className;
 				document.getElementById("secret").val = idSuppr;
@@ -267,7 +266,7 @@ $req->closeCursor();
 				}
 			});
 
-			//Gestion du click sur le bouton "modifier"
+			//Gestion du clic sur le bouton "modifier"
 			modif.addEventListener('click', function(){
 				var idSuppr = this.className;
 				document.getElementById("secret").val = idSuppr;
@@ -286,6 +285,7 @@ $req->closeCursor();
 				tag.appendChild(newInput);
 			};*/
 		}
+
 
 
 </script>

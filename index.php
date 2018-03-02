@@ -254,7 +254,7 @@ else{};// si pas de cookie => on ne fait rien !
 			// Définition des contenus textuels
 			titre.textContent = obj.titre;
 			contenu.innerHTML = "<input type='checkbox' /> " + obj.contenu;
-			edition.innerHTML = '<span id="modific" class="edition"><a href=# class="' + obj.id + '">Ajouter une entrée</a></span><span id="remov"class="edition"><a href=# class="' + obj.id + '">Supprimer la liste</a></span>';
+			edition.innerHTML = '<span class="modific edition"><a href=# class="' + obj.id + '">Ajouter une entrée</a></span><span class="remov edition"><a href=# class="' + obj.id + '">Supprimer la liste</a></span>';
 			cache.textContent = obj.id;
 			date.textContent = obj.date;
 			//Insertion de la première liste dans la page
@@ -262,13 +262,12 @@ else{};// si pas de cookie => on ne fait rien !
 
 			var cond = document.getElementById("tit"+obj.id);
 
-
 			if (cond === null) {// Si aucun titre ayant pour id le meme tit+obj.id que celui en cours de traitement
 				// n'esiste,
 				console.log("cond n'existe pas");
 			 	// alors on insere tout dans la page
 				liste.appendChild(titre);
-				balise.appendChild(contenu)
+				balise.appendChild(contenu);
 				liste.appendChild(balise);
 				liste.appendChild(edition);
 				liste.appendChild(date);
@@ -284,8 +283,16 @@ else{};// si pas de cookie => on ne fait rien !
 				// Alors, on insere juste le nouveau contenu dans la balise deja existante.
 				document.getElementById("bal"+ obj.id).appendChild(contenu);
 			}
-
 		 }
+		function confirmSubmit()
+		{
+			var ok=confirm("Etes-vous sûr ?");
+			if (ok){
+				location.href = 'removlist.php';
+			}
+			return ok ;
+
+		}
 
 	</script>
 
