@@ -106,7 +106,7 @@ $(function(){
 	// Activation des infobulles personalisées avec tooltipster
 	$('.infobulle').tooltipster();
 
-	//Lien de suppression de liste------------
+	//clic sur le lien de suppression de liste------------
 	$('.edition a').click(function(){
 		console.log(this.className);
 		var listId = this.className;
@@ -115,6 +115,38 @@ $(function(){
 
 	$('.remov').click(function(){
 		confirmSubmit();//Astuce : Definir la fonction en Javascript et l'appeler en JQuery
+	});
+
+
+	function afficherPopupInformation(message) {
+		// crée la division qui sera convertie en popup
+		$('body').append('<div id="popupinformation" title="Information"></div>');
+		$("#popupinformation").html(message);
+		// transforme la division en popup
+		var popup = $("#popupinformation").dialog({
+			autoOpen: true,
+			width: 400,
+			dialogClass: 'dialogstyleperso',
+			buttons: [
+				{
+					text: "OK",
+					"class": 'ui-state-information',
+					click: function () {
+						$(this).dialog("close");
+						$('#popupinformation').remove();
+					}
+				}
+			]
+		});
+
+		// ajouter le style à la barre de titre
+		// note : on n'utilise pas .dialogClass dans la définition de la boîte de dialogue car mettrait tout le fond en couleur
+		$("#popupinformation").prev().addClass('ui-state-information');
+		return popup;
+	}
+	$('.modific').click(function(){
+		afficherPopupInformation("test");
+		//window.location.href = 'modifliste.php';
 	});
 
 });

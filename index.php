@@ -10,6 +10,7 @@ session_start(); // On démarre la session AVANT toute chose
 		<link href="css/mdb.min.css" rel="stylesheet">
 		<link href="css/index.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="plugins/tooltipster/dist/css/tooltipster.bundle.min.css" />
+		<link rel="stylesheet" type="text/css" href="plugins/jquery-ui/jquery-ui.min.css" />
 	</head>
 
 	<body>
@@ -74,9 +75,16 @@ session_start(); // On démarre la session AVANT toute chose
 		<img id="iconeDivCoul" class="iconeDiv infobulle" src="img/divcoul.png" title="Afficher / Masquer mes listes">
 		<div id="testContent">
 			<a href = "todo.php"><img src = "img/todo.png" /></a>
-
+			<div id="popup">
+				<!--<form method="GET" action="modifliste.php">
+					<label for="item">Sasissez le texte :</label><br />
+					<input type="text" id="item" name="item" /><br />
+					<input type="submit" value="Ajouter" id="valid" /><input type="reset" value="Annuler" id="cancel" />
+				</form>-->
+			</div>
 
 		</div>
+
 	</div>
 	
 		<footer class="footer">
@@ -200,14 +208,11 @@ $req->closeCursor();
 
 			</script>
 <?php
-}
-else{};// si pas de cookie => on ne fait rien !
+			//------------------------traitement des listes todolist----------------------------------------
 
-		//------------------------traitement des listes todolist----------------------------------------
+			//On recupere les listes de la bdd
 
-		//On recupere les listes de la bdd
-
-		$req3=$bdd->query('SELECT t.id_liste AS idliste,
+			$req3=$bdd->query('SELECT t.id_liste AS idliste,
 										l.titre_todoliste as titreliste,
 										t.contenu AS contenu,
 										DATE_FORMAT(l.date_creation, "%d/%m/%Y") AS date_creation 
@@ -216,11 +221,15 @@ else{};// si pas de cookie => on ne fait rien !
 										WHERE l.id_pseudo = "'.$_COOKIE['iduser'].'"
 										AND t.id_liste = l.id												
 										');
-		$res3 = array();
-		while ($donnees3 = $req3->fetch()){
-			$res3[] = $donnees3;
-		}
-		//var_dump($res3);
+			$res3 = array();
+			while ($donnees3 = $req3->fetch()){
+				$res3[] = $donnees3;
+			}
+			//var_dump($res3);
+}
+else{};// si pas de cookie => on ne fait rien !
+
+
 ?>
 	<script>
 		var tabl3 = <?php echo json_encode($res3);?>;
@@ -296,7 +305,8 @@ else{};// si pas de cookie => on ne fait rien !
 
 	</script>
 
-		<script src="js/jquery.js"></script>	
+		<script src="js/jquery.js"></script>
+		<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 		<script src="js/popper.min.js"></script>
 		<script src="js/mdb.js"></script>		 
 		<script src="js/bootstrap.js"></script>

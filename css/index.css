@@ -169,3 +169,10 @@ input[type="checkbox"] {
 .edition {
 	margin-top: 50px;
 }
+#popup {
+	background-color: white;
+	color: black;
+	border: 2px solid black;
+	border-radius: 8px;
+	z-index: 100;
+}
