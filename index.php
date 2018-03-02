@@ -75,7 +75,7 @@ session_start(); // On démarre la session AVANT toute chose
 		<img id="iconeDivCoul" class="iconeDiv infobulle" src="img/divcoul.png" title="Afficher / Masquer mes listes">
 		<div id="testContent">
 			<a href = "todo.php"><img src = "img/todo.png" /></a>
-			
+
 
 		</div>
 

@@ -169,10 +169,28 @@ input[type="checkbox"] {
 .edition {
 	margin-top: 50px;
 }
-#popup {
-	background-color: white;
+/*#popup {
 	color: black;
-	border: 2px solid black;
-	border-radius: 8px;
 	z-index: 100;
+}*/
+.dialogstyleperso .ui-state-information {
+	border: 1px solid #2c2f81;
+	background: #3774a0;   /* bleu - pour anciens navigateurs */
+	background: -moz-linear-gradient(top, #3774a0 0%, #3774a0 55%, #316e9b 57%, #316e9b 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #3774a0 0%,#3774a0 55%,#316e9b 57%,#316e9b 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #3774a0 0%,#3774a0 55%,#316e9b 57%,#316e9b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3774a0', endColorstr='#316e9b',GradientType=0 ); /* IE6-9 */
+	color: #ffffff;
+	padding: 2px 6px;
+	border-radius: 5px;
+}
+
+.dialogstyleperso .ui-dialog-titlebar-close {
+	top: 12px;
+}
+
+.dialogstyleperso .ui-dialog-titlebar-close::before {
+	content: "\274c";
+	font-weight: bold;
+	font-size: 0.8em;
 }

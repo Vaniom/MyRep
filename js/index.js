@@ -117,23 +117,31 @@ $(function(){
 		confirmSubmit();//Astuce : Definir la fonction en Javascript et l'appeler en JQuery
 	});
 
-
-	function afficherPopupInformation(message) {
+// afficher un popup avec formulaire d'ajout de ligne lors du clic sur "ajouter"
+	function afficherPopup(message) {
 		// crée la division qui sera convertie en popup
-		$('body').append('<div id="popupinformation" title="Information"></div>');
-		$("#popupinformation").html(message);
+		$('body').append('<div id="popup" title="Ajouter une entrée à la liste"></div>');
+		$("#popup").html(message);
 		// transforme la division en popup
-		var popup = $("#popupinformation").dialog({
+		var popup = $("#popup").dialog({
 			autoOpen: true,
 			width: 400,
 			dialogClass: 'dialogstyleperso',
 			buttons: [
-				{
-					text: "OK",
+				/*{
+					text: "Ajouter",
 					"class": 'ui-state-information',
 					click: function () {
 						$(this).dialog("close");
-						$('#popupinformation').remove();
+						$('#popup').remove();
+					}
+				},*/
+				{
+					text: "Annuler",
+					"class": 'ui-state-information',
+					click: function() {
+						$(this).dialog("close");
+						$('#popup').remove();
 					}
 				}
 			]
@@ -141,12 +149,11 @@ $(function(){
 
 		// ajouter le style à la barre de titre
 		// note : on n'utilise pas .dialogClass dans la définition de la boîte de dialogue car mettrait tout le fond en couleur
-		$("#popupinformation").prev().addClass('ui-state-information');
+		$("#popup").prev().addClass('ui-state-information');
 		return popup;
 	}
 	$('.modific').click(function(){
-		afficherPopupInformation("test");
-		//window.location.href = 'modifliste.php';
+		afficherPopup('<form method="GET" action="modiflist.php"><input type="text" id="item" name="item" placeholder="Saisissez le texte" /><br /><input type="submit" value="Ajouter" /></form>');
 	});
 
 });
