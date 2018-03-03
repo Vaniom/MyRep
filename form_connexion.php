@@ -61,6 +61,10 @@ else
 </head>
 
 <body>
+<div id='home'>
+	<a href='index.php'><img src='img/ico/ico9w.png' width='30px'></a> Accueil
+	<hr>
+</div>
 	<h1>Connexion sur myRep!</h1>
 	<form action="connexion.php" method="post">
 		<p>
@@ -78,11 +82,7 @@ else
 		<input type="submit" value="Valider" id="valid" />
 		</p>
 	</form>
-	<p>
-		<div id="home">
-			<a href="index.php"><img src="img/ico/ico9w.png" width="30px"></a> Retour à l'accueil
-		</div>
-	</p>
+
 
 <script src="js/jquery.js"></script>
 

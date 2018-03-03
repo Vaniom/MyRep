@@ -16,6 +16,10 @@
 		</style>
 	</head>
 	<body>
+	<div id='home'>
+		<a href='index.php'><img src='img/ico/ico9w.png' width='30px'></a> Accueil
+		<hr>
+	</div>
 		<h1>Inscription sur myRep!</h1>
 		<h2>Crée GRATUITEMENT des tas de répertoires</h2>
 
@@ -35,9 +39,7 @@
 		    	<input type="submit" value="Valider" id="valid"/>
 			</p>
 		</form>
-		<div id="home">
-			<a href="index.php"><img src="img/ico/ico9w.png" width="30px"></a> Retour à l'accueil
-		</div>
+
 	</body>
 	<script src="js/jquery.js"></script>
 	<script src="plugins/jquery-validation/dist/jquery.validate.js"></script>

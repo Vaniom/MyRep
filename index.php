@@ -86,6 +86,7 @@ session_start(); // On démarre la session AVANT toute chose
         		<div class="row">
             		<div class="col-lg-12">
                 	<span id="foot">©2018-Florent Pianet</span>
+						<span id="contact"><a href=#>Contactez-moi</a></span>
             		</div>
         		</div>
    			</div>

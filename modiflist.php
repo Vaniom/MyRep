@@ -20,7 +20,7 @@ catch(Exception $e) {
 	die('Erreur : ' . $e->getMessage());
 }
 
-$item = htmlspecialchars($_GET['item']);
+$item = htmlspecialchars($_POST['item']);
 $idListe = $_COOKIE['listId'];
 echo $item;
 echo $idListe;
@@ -37,4 +37,4 @@ if(empty($item)){// Si c'est vide, on ne fait rien et on passe au suivant
 
 $req->closeCursor();
 
-header("Location:index.php#testContent");
+header("Location:index.php");

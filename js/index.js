@@ -153,7 +153,42 @@ $(function(){
 		return popup;
 	}
 	$('.modific').click(function(){
-		afficherPopup('<form method="GET" action="modiflist.php"><input type="text" id="item" name="item" placeholder="Saisissez le texte" /><br /><input type="submit" value="Ajouter" /></form>');
+		afficherPopup('<form method="POST" action="modiflist.php"><input type="text" id="item" name="item" placeholder="Saisissez le texte" /><br /><input type="submit" value="Ajouter" /></form>');
 	});
+
+	// Contact form ---------------------------------------
+
+	function contactForm(message){
+		$('body').append('<div id="contactForm" title="Formulaire de contact"></div>');
+		$('#contactForm').html(message);
+		var contactForm = $('#contactForm').dialog({
+			autoOpen: true,
+			width: 500,
+			dialogClass: 'dialogstyleperso',
+			buttons: [
+				/*{
+					text: "Ajouter",
+					"class": 'ui-state-information',
+					click: function () {
+						$(this).dialog("close");
+						$('#popup').remove();
+					}
+				},*/
+				{
+					text: "Annuler",
+					"class": 'ui-state-information',
+					click: function() {
+						$(this).dialog("close");
+						$('#contactForm').remove();
+					}
+				}
+			]
+		});
+		$('#contactForm').prev().addClass('ui-state-information');
+		return contactForm;
+	}
+	$("#contact").click(function(){
+		contactForm('<form method="POST" action="contact.php"><label for="email">Votre adresse email</label><input type="email" id="email" name="email" placeholder="yourmail@xyz.com" required /><br /><label for="mess">Votre message : </label><br /><textarea id="mess" name="mess" placeholder="Saisissez votre message" rows="4" required></textarea><br /><input type="submit" id="valid" value="Envoyer" />')
+	})
 
 });
