@@ -128,14 +128,6 @@ $(function(){
 			width: 400,
 			dialogClass: 'dialogstyleperso',
 			buttons: [
-				/*{
-					text: "Ajouter",
-					"class": 'ui-state-information',
-					click: function () {
-						$(this).dialog("close");
-						$('#popup').remove();
-					}
-				},*/
 				{
 					text: "Annuler",
 					"class": 'ui-state-information',
@@ -166,14 +158,6 @@ $(function(){
 			width: 500,
 			dialogClass: 'dialogstyleperso',
 			buttons: [
-				/*{
-					text: "Ajouter",
-					"class": 'ui-state-information',
-					click: function () {
-						$(this).dialog("close");
-						$('#popup').remove();
-					}
-				},*/
 				{
 					text: "Annuler",
 					"class": 'ui-state-information',
@@ -195,9 +179,40 @@ $(function(){
 
 	$('input[type=checkbox]').change(function(){
 		if($(this).is(':checked')) {
-			alert($(this).attr("id")+ " checked");
+			var var1 = encodeURIComponent($(this).attr("id"));
+			var var2 = encodeURIComponent("1");
+			var xhr = getXMLHttpRequest(); //fonction getXMLHttpRequest() définie dans oXHR.php
+			xhr.onreadystatechange = function() {// verification du succès de la requête
+				if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+					console.log(xhr.responseText); // Données textuelles récupérées
+				}
+			};
+			xhr.open("GET", "update_list.php?variable1=" + var1 + "&variable2=" + var2, true);
+			xhr.send(null);
 		} else {
+			var var1 = encodeURIComponent($(this).attr("id"));
+			var var2 = encodeURIComponent("0");
+			var xhr = getXMLHttpRequest(); //fonction getXMLHttpRequest() définie dans oXHR.php
+			xhr.onreadystatechange = function() {// verification du succès de la requête
+				if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+					console.log(xhr.responseText); // Données textuelles récupérées
+				}
+			};
+			xhr.open("GET", "update_list.php?variable1=" + var1 + "&variable2=" + var2, true);
+			xhr.send(null);
 		}
 	});
+
+	$('input[type=checkbox]').change(function(){
+		var parent = $(this).parent();
+		var eParent = parent.get(0);
+		var cParent = eParent.lastChild;
+		console.log(cParent);
+		if($(this).is(':checked')) {
+			cParent.hide;
+		}else {
+			cParent.show;
+		}
+	})
 
 });

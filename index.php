@@ -211,6 +211,7 @@ $req->closeCursor();
 										l.titre_todoliste as titreliste,
 										t.contenu AS contenu,
 										t.id AS idcont,
+										t.coche AS coche,
 										DATE_FORMAT(l.date_creation, "%d/%m/%Y") AS date_creation 
 										FROM todolist AS t,
 										liaison_user_todo AS l									
@@ -230,7 +231,6 @@ else{};// si pas de cookie => on ne fait rien !
 	<script>
 		var tabl3 = <?php echo json_encode($res3);?>;
 
-		//console.log(tabl3);
 
 		for (var i = 0; i < tabl3.length; i++) { // On boucle sur le tableau qui contient les entrées de liste
 		 	var obj = {// Pour chaque entrée on initialise un objet
@@ -238,6 +238,7 @@ else{};// si pas de cookie => on ne fait rien !
 				titre: tabl3[i].titreliste,
 				contenu: tabl3[i].contenu,
 				idcont: tabl3[i].idcont,
+				coche: tabl3[i].coche,
 				date: tabl3[i].date_creation
 			};
 		 	//Creation des éléments
@@ -249,6 +250,7 @@ else{};// si pas de cookie => on ne fait rien !
 			var date = document.createElement('p');
 			var cache = document.createElement('span');
 
+
 			// attribution des ID
 			liste.setAttribute('id', "list" + obj.id);
 			liste.setAttribute('class', 'blocListe');
@@ -257,21 +259,28 @@ else{};// si pas de cookie => on ne fait rien !
 			cache.setAttribute('id', 'cache');
 			cache.setAttribute('hidden', 'true');
 			balise.style.listStyleType = 'none';
+
 			// Définition des contenus textuels
 			titre.textContent = obj.titre;
-			contenu.innerHTML = "<input type='checkbox' id='" + obj.idcont + "' /> " + obj.contenu;
+			var test = obj.coche;
+			if (test > 0){ // gestion de l'etat coché / pas coché
+				contenu.innerHTML = "<label><input type='checkbox' class='checkbox' id='" + obj.idcont + "' " +
+					"checked='true' " +
+					"/> "+ obj.contenu + "</label>";
+			} else {
+				contenu.innerHTML = "<label><input type='checkbox' class='checkbox' id='" + obj.idcont + "' /> "+ obj
+					.contenu + "</label>";
+			}
 			edition.innerHTML = '<span class="modific edition"><a href=# class="' + obj.id + '">Ajouter une entrée</a></span><span class="remov edition"><a href=# class="' + obj.id + '">Supprimer la liste</a></span>';
 			cache.textContent = obj.id;
 			date.textContent = obj.date;
-			//Insertion de la première liste dans la page
-			document.getElementById('testContent').appendChild(liste);
 
+			//Insertion de la première liste dans la page
 			var cond = document.getElementById("tit"+obj.id);
 
-			if (cond === null) {// Si aucun titre ayant pour id le meme tit+obj.id que celui en cours de traitement
-				// n'existe...
-				console.log("cond n'existe pas");
-			 	// ...alors on insere tout dans la page
+
+			if (cond === null) {// Si aucun titre ayant pour id le meme tit+obj.id que celui en cours de traitement n'existe
+				// ...alors on insere tout dans la page
 				liste.appendChild(titre);
 				balise.appendChild(contenu);
 				liste.appendChild(balise);
@@ -284,13 +293,18 @@ else{};// si pas de cookie => on ne fait rien !
 				balise.setAttribute('id', "bal" + obj.id);
 				titre.setAttribute('id', "tit"+ obj.id);
 
+
+
+
 			 } else {// Sinon (si un titre ayant pour id le meme tit+ obj.id que celui en cours de traitement existe)
-				console.log( "cond existe");
-				console.log("obj.id = " + obj.id);
+
 				// Alors, on insere juste le nouveau contenu dans la balise deja existante.
 				document.getElementById("bal"+ obj.id).appendChild(contenu);
 			}
-		 }
+			document.getElementById('testContent').appendChild(liste);
+
+		}
+
 		function confirmSubmit()//Ne pas supprimer, fonction appelée dans index.js
 		{
 			var ok=confirm("Etes-vous sûr ?");
@@ -309,6 +323,7 @@ else{};// si pas de cookie => on ne fait rien !
 		<script src="js/mdb.js"></script>		 
 		<script src="js/bootstrap.js"></script>
 		<script src="js/index.js"></script>
+		<script src="js/oXHR.js"></script>
 		<script src="plugins/js.cookie.js"></script>
 		<script type="text/javascript" id="cookiebanner" src="plugins/cookiebanner.min.js"></script>
 		<script type="text/javascript" src="plugins/tooltipster/dist/js/tooltipster.bundle.min.js"></script>

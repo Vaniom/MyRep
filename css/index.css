@@ -157,7 +157,12 @@ input[type="checkbox"] {
 }
 .blocListe {
 	padding-left: 7%;
+	line-height: 40px !important;
 }
+.checkbox {
+	display: inline-block !important;
+}
+
 .blocListe p{
 	text-align: left;
 	font-style: italic;

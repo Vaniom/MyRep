@@ -30,10 +30,11 @@ echo $titre;
 for($i = 1; $i < count($a); $i++){ // On boucle sur chaque valeur du tableau; on commence à 1 car 0 correspond au titre (déjà inséré)
 	if(empty($a[$i])){// Si c'est vide, on ne fait rien et on passe au suivant
 	} else {//sinon on insere la valeur dans la table
-		$req2=$bdd->prepare('INSERT INTO todolist (id_liste, contenu) VALUES(:id_liste, :contenu)');
+		$req2=$bdd->prepare('INSERT INTO todolist (id_liste, contenu, coche) VALUES(:id_liste, :contenu, :coche)');
 		$req2->execute(array(
 			'id_liste' => $idListe,//L'id du titre avait été recupérée lors de l'insertion
-			'contenu' => $a[$i]
+			'contenu' => $a[$i],
+			'coche' => '0'
 		));
 	}
 }
