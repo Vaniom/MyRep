@@ -210,6 +210,7 @@ $req->closeCursor();
 			$req3=$bdd->query('SELECT t.id_liste AS idliste,
 										l.titre_todoliste as titreliste,
 										t.contenu AS contenu,
+										t.id AS idcont,
 										DATE_FORMAT(l.date_creation, "%d/%m/%Y") AS date_creation 
 										FROM todolist AS t,
 										liaison_user_todo AS l									
@@ -236,6 +237,7 @@ else{};// si pas de cookie => on ne fait rien !
 		 		id: tabl3[i].idliste,
 				titre: tabl3[i].titreliste,
 				contenu: tabl3[i].contenu,
+				idcont: tabl3[i].idcont,
 				date: tabl3[i].date_creation
 			};
 		 	//Creation des éléments
@@ -257,7 +259,7 @@ else{};// si pas de cookie => on ne fait rien !
 			balise.style.listStyleType = 'none';
 			// Définition des contenus textuels
 			titre.textContent = obj.titre;
-			contenu.innerHTML = "<input type='checkbox' /> " + obj.contenu;
+			contenu.innerHTML = "<input type='checkbox' id='" + obj.idcont + "' /> " + obj.contenu;
 			edition.innerHTML = '<span class="modific edition"><a href=# class="' + obj.id + '">Ajouter une entrée</a></span><span class="remov edition"><a href=# class="' + obj.id + '">Supprimer la liste</a></span>';
 			cache.textContent = obj.id;
 			date.textContent = obj.date;
@@ -267,9 +269,9 @@ else{};// si pas de cookie => on ne fait rien !
 			var cond = document.getElementById("tit"+obj.id);
 
 			if (cond === null) {// Si aucun titre ayant pour id le meme tit+obj.id que celui en cours de traitement
-				// n'esiste,
+				// n'existe...
 				console.log("cond n'existe pas");
-			 	// alors on insere tout dans la page
+			 	// ...alors on insere tout dans la page
 				liste.appendChild(titre);
 				balise.appendChild(contenu);
 				liste.appendChild(balise);
@@ -281,6 +283,7 @@ else{};// si pas de cookie => on ne fait rien !
 				liste.setAttribute('id', "list" + obj.id);
 				balise.setAttribute('id', "bal" + obj.id);
 				titre.setAttribute('id', "tit"+ obj.id);
+
 			 } else {// Sinon (si un titre ayant pour id le meme tit+ obj.id que celui en cours de traitement existe)
 				console.log( "cond existe");
 				console.log("obj.id = " + obj.id);

@@ -189,6 +189,15 @@ $(function(){
 	}
 	$("#contact").click(function(){
 		contactForm('<form method="POST" action="contact.php"><label for="email">Votre adresse email</label><input type="email" id="email" name="email" placeholder="yourmail@xyz.com" required /><br /><label for="mess">Votre message : </label><br /><textarea id="mess" name="mess" placeholder="Saisissez votre message" rows="4" required></textarea><br /><input type="submit" id="valid" value="Envoyer" />')
-	})
+	});
+
+	//Gestion de l'etat des checkboxes dans les todolistes
+
+	$('input[type=checkbox]').change(function(){
+		if($(this).is(':checked')) {
+			alert($(this).attr("id")+ " checked");
+		} else {
+		}
+	});
 
 });

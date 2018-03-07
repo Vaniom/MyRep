@@ -70,8 +70,7 @@ session_start();
 					$('#preview').append('<input type="')
 				})*/
 			});
-
-		})
+		});
 	</script>
 </body>
 </html>
