@@ -202,3 +202,8 @@ input[type="checkbox"] {
 #contact{
 	margin-left: 30px;
 }
+.cocheOk {
+	text-decoration: line-through;
+	font-style: italic;
+	color: gray;
+}

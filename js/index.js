@@ -204,14 +204,12 @@ $(function(){
 	});
 
 	$('input[type=checkbox]').change(function(){
-		var parent = $(this).parent();
-		var eParent = parent.get(0);
-		var cParent = eParent.lastChild;
+		var cParent = $(this).parents("label");
 		console.log(cParent);
 		if($(this).is(':checked')) {
-			cParent.hide;
+			cParent.css({"text-decoration": "line-through", "font-style": "italic", "color": "gray"});
 		}else {
-			cParent.show;
+			cParent.css({"text-decoration": "none", "font-style": "normal", "color": "white"});
 		}
 	})
 

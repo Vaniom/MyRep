@@ -264,11 +264,11 @@ else{};// si pas de cookie => on ne fait rien !
 			titre.textContent = obj.titre;
 			var test = obj.coche;
 			if (test > 0){ // gestion de l'etat coché / pas coché
-				contenu.innerHTML = "<label><input type='checkbox' class='checkbox' id='" + obj.idcont + "' " +
+				contenu.innerHTML = "<label class='cocheOk'><input type='checkbox' class='checkbox' id='" + obj.idcont + "' " +
 					"checked='true' " +
 					"/> "+ obj.contenu + "</label>";
 			} else {
-				contenu.innerHTML = "<label><input type='checkbox' class='checkbox' id='" + obj.idcont + "' /> "+ obj
+				contenu.innerHTML = "<label class='cocheKo'><input type='checkbox' class='checkbox' id='" + obj.idcont + "' /> "+ obj
 					.contenu + "</label>";
 			}
 			edition.innerHTML = '<span class="modific edition"><a href=# class="' + obj.id + '">Ajouter une entrée</a></span><span class="remov edition"><a href=# class="' + obj.id + '">Supprimer la liste</a></span>';
